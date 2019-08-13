@@ -4,20 +4,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
-namespace BookAPI.Controllers
+namespace BookAPI2.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class BooksController : ControllerBase
+    public class ValuesController : ControllerBase
     {
-        /* Dependenccy Injection */
-        private IBookService _bookService;
-        public BooksController(IBookService bookService)
-        {
-            _bookService = bookService;
-        }
-        /* End Dependenccy Injection */
-
         // GET api/values
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()

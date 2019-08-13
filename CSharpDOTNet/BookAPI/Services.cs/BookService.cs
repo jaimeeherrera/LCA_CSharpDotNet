@@ -2,44 +2,61 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BookAPI.Models;
+using BookAPI.Data;
 
 namespace BookAPI.Services
 {
-    public class BookService : IBookService 
+    public class BookService : IBookService
     {
-        private readonly DbContext _bookContext;
 
-        public BookService(DbContext bookContext)
+        private readonly BookContext _bookContext;
+
+        public BookService(BookContext bookContext)
         {
-            _bookContext = bookContext; 
-
+            _bookContext = bookContext;
         }
-        // Get all books 
-        public IEnumerable <Book> GetAll()
+
+        // Get all books
+        public IEnumerable<Book> GetAll()
         {
             return _bookContext.books.ToList();
         }
 
-        //Ge3t a book by id
-        public Book Get(int id)
+        // Get a book by ID
+        public Book Get(int Id)
         {
-//return _bookContext.books.FirstOrDefault(base => b.Id == id);
-            retrun _bookContext.books.Find(id);
+            return _bookContext.books.Find(Id);
         }
-        //Add a new book 
-        public BookAPI Add(Book newBook)
+
+        // Add a new book
+        public Book Add(Book newBook)
         {
             _bookContext.books.Add(newBook);
             _bookContext.SaveChanges();
             return newBook;
         }
 
-        //Update Book
-         public 
-
-        public void Delete (Book book)
+        // Update a book
+        public Book Update(Book updatedBook)
         {
-            var currentBook 
+            var currentBook = _bookContext.books.FirstOrDefault(b => b.Id == updatedBook.Id);
+            if (currentBook == null) return null;
+            _bookContext.Entry(currentBook).CurrentValues.SetValues(updatedBook);
+            _bookContext.Update(currentBook);
+            _bookContext.SaveChanges();
+            return currentBook;
+        }
+
+        // Delete a book
+        public void Delete(Book book)
+        {
+            var currentBook = _bookContext.books.Find(book.Id);
+            if (currentBook != null)
+            {
+                _bookContext.books.Remove(book);
+                _bookContext.SaveChanges();
+            }
         }
     }
 }

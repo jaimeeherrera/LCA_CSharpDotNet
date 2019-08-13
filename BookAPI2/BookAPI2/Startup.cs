@@ -11,7 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
-namespace StudentAPI
+namespace BookAPI2
 {
     public class Startup
     {
@@ -22,7 +22,7 @@ namespace StudentAPI
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this methodo add services to the container.
+        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
