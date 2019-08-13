@@ -15,6 +15,7 @@ namespace BookAPI.Controllers
         {
             // TODO: keep a reference to the service so we can use below
             _authorService = authorService;
+            
         }
 
         // TODO: get all authors

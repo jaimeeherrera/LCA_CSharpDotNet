@@ -27,7 +27,7 @@ namespace BookAPI
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddDbContext <BookContext>();
-            services.AddScoped<IBookService, BookServies() >;
+            services.AddScoped<IBookService, BookServies>();
         }
 
 

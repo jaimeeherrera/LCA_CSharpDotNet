@@ -20,7 +20,7 @@ namespace BookAPI.Services
         public Author Add(Author author)
         {
             // TODO: implement add
-            _bookContext.Authors.Add(author);
+            _bookContext.Add(author);
             _bookContext.SaveChanges();
             return author;
         }
